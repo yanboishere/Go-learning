@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 )
@@ -26,4 +27,12 @@ func main() {
 			fmt.Printf("%d\t%s\n", n, line)
 		}
 	}
+}
+
+func countLines(f *os.File, counts map[string]int) {
+	input := bufio.NewScanner(f)
+	for input.Scan() {
+		counts[input.Text()]++
+	}
+	//注意：忽略input.Err中可能出现的错误
 }
